@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--/ Intro Single star /-->
+<section class="intro-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="title-single-box">
+                    <h1 class="title-single">{{ post.title }}</h1>
+                    <span class="color-text-a">News Single.</span>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            {{ post.title }}
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ Intro Single End /-->
+
+<!--/ News Single Star /-->
+<section class="news-single nav-arrow-b">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="news-img-box">
+                    <img src="{{ post.thumbnail.url }}" alt="" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                <div class="post-information">
+                    <ul class="list-inline text-center color-a">
+                        <li class="list-inline-item mr-2">
+                            <strong>Author: </strong>
+                            <span class="color-text-a">{{ post.author.user.username }}</span>
+                        </li>
+                        <li class="list-inline-item mr-2">
+                            <strong>Category: </strong>
+                            {% for cat in post.categories.all %}
+                                <span class="color-text-a">{{ cat }}</span>
+                            {% endfor %}
+                        </li>
+                        <li class="list-inline-item">
+                            <strong>Date: </strong>
+                            <span class="color-text-a">{{ post.timestamp }}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="post-content color-text-a">
+                    <p class="post-intro">{{ post.content|safe }}</p>
+                </div>
+                <div class="post-footer">
+                    <div class="post-share">
+                        <span>Share: </span>
+                        <ul class="list-inline socials">
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 offset-md-1 col-lg-10 offset-lg-1">
+                <div class="title-box-d">
+                    <h3 class="title-d">Comments ({{ post.comments.count }})</h3>
+                </div>
+                {% for comment in post.get_comments %}
+                    <div class="box-comments">
+                    <ul class="list-comments">
+                        <li>
+                            <div class="comment-avatar">
+                                {% if comment.user.author %}
+                                    <img src="{{ comment.user.author.profile_picture.url }}" alt="">
+                                {% else %}
+                                    <img src="{{ post.author.profile_picture.url }}" alt="">
+                                {% endif %}
+                            </div>
+                            <div class="comment-details">
+                                <h4 class="comment-author">{{ comment.user.username }}</h4>
+                                <span>{{ comment.timestamp|timesince }} ago</span>
+                                <p class="comment-description">{{ comment.content|safe }}</p>
+                                <a href="3">Reply</a>
+                                 <form class="form-a" method="POST" action=".">
+                                    {% csrf_token %}
+                                    {{ form.errors }}
+                                    {{ form.non_field_errors }}
+                                    {{ form }}
+                                    <br/>
+                                    <div >
+                                        <button type="submit" class="btn btn-a">Reply</button>
+                                    </div>
+                                 </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                {% endfor %}
+                {% if request.user.is_authenticated %}
+                    <div class="form-comments">
+                        <div class="title-box-d">
+                            <h3 class="title-d"> Leave a Reply</h3>
+                        </div>
+                        <form class="form-a" method="POST" action=".">
+                            {% csrf_token %}
+                            {{ form.errors }}
+                            {{ form.non_field_errors }}
+                            {{ form }}
+                            <br/>
+                            <div >
+                                <button type="submit" class="btn btn-a">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                {% else %}
+                    <a href="{% url 'account_login' %}" class="btn btn-b">Login to Comment</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ News Single End /-->
+{% endblock %}
