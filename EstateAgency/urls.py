@@ -2,14 +2,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('contacts.urls', namespace='contacts')),
     path('', include('listings.urls', namespace='listings')),
     path('', include('realtors.urls', namespace='realtors')),
     path('', include('blog.urls', namespace='blog')),
     path('tinymce/', include('tinymce.urls')),
+    url(r'^account/', include('allauth.urls'))
 ]
 
 if settings.DEBUG:
