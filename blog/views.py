@@ -4,6 +4,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.views.generic import DetailView
 from .forms import CommentForm
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 
 def blog_list(request):
@@ -27,6 +28,7 @@ def blog_list(request):
     return render(request, 'blog-grid.html', context)
 
 
+@login_required
 def post(request, slug):
     post = get_object_or_404(Blog, slug=slug)
 

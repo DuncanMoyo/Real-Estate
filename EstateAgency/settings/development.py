@@ -5,12 +5,9 @@ ALLOWED_HOSTS = ['127.0.0.1']
 
 INSTALLED_APPS += [
     'debug_toolbar',
-    'listings',
-    'contacts',
-    'realtors',
-    'blog',
-    'tinymce',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
 
