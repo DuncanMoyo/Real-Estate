@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'realtors',
     'blog',
     'tinymce',
+    'crispy_forms',
 
     'django.contrib.sites',
     'allauth',
@@ -82,3 +83,5 @@ AUTHENTICATION_BACKENDS = (
 LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
