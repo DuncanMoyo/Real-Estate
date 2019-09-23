@@ -9,6 +9,7 @@ urlpatterns = [
     path('', include('listings.urls', namespace='listings')),
     path('', include('realtors.urls', namespace='realtors')),
     path('', include('blog.urls', namespace='blog')),
+    path('', include('about.urls', namespace='about')),
     path('tinymce/', include('tinymce.urls')),
     url(r'^account/', include('allauth.urls'))
 ]
