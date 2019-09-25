@@ -1,0 +1,12 @@
+You received a message from you contact form, from:
+
+{{name}}
+
+This is the title of the message:
+{{what_subject}}
+
+This is what they said:
+{{ message }}
+
+Reply to this email:
+{{ email }}
