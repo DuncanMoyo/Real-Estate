@@ -1,9 +1,0 @@
-MY_SEND_GRID_API_KEY = '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'
-MY_EMAIL_HOST = 'smtp.sendgrid.net'
-MY_EMAIL_HOST_USER = 'DuncanZIm'
-MY_EMAIL_HOST_PASSWORD = 'delectable92'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-MY_DEFAULT_FROM_EMAIL = 'duncanfmoyo@gmail.com'
-ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Contact email received from DuncanAgency'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
