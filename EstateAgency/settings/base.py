@@ -1,5 +1,6 @@
 import os
 from decouple import config
+from .secret_keys import MY_DEFAULT_FROM_EMAIL, MY_EMAIL_HOST_PASSWORD, MY_EMAIL_HOST_USER, MY_SEND_GRID_API_KEY, MY_EMAIL_HOST
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -114,6 +115,16 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_REDIRECT_URL = '/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Sendgrid settings
+
+SEND_GRID_API_KEY = MY_SEND_GRID_API_KEY
+EMAIL_HOST = MY_EMAIL_HOST
+EMAIL_HOST_USER = MY_EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = MY_EMAIL_HOST_PASSWORD
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = MY_DEFAULT_FROM_EMAIL
+ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Contact email received from DuncanAgency'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

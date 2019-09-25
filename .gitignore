@@ -124,3 +124,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+/EstateAgency/settings/secret_keys.py
